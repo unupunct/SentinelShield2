@@ -1,0 +1,60 @@
+/* Sentinel Shield — temă întunecată, accente cyan/portocaliu. Nivelurile de risc se disting prin culoare ȘI icon ȘI text. */
+:root {
+  --bg: #121418; --panel: #1b1e25; --panel-2: #232731; --line: #2f3440; --text: #e8eaee; --muted: #9aa3b2;
+  --cyan: #22d3ee; --orange: #f59e0b; --safe: #34d399; --warn: #f59e0b; --danger: #f87171; --unknown: #94a3b8;
+  --radius: 10px; --focus: 0 0 0 3px rgba(34, 211, 238, .55);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.5 system-ui, "Segoe UI", Roboto, sans-serif; }
+h1, h2, h3 { margin: 0 0 .5em; line-height: 1.25; }
+h1 { font-size: 20px; } h2 { font-size: 16px; } h3 { font-size: 14px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+a { color: var(--cyan); }
+:focus-visible { outline: none; box-shadow: var(--focus); border-radius: 6px; }
+button, .btn { font: inherit; border-radius: 8px; border: 1px solid var(--line); background: var(--panel-2); color: var(--text); padding: 8px 14px; cursor: pointer; }
+button:hover:not(:disabled) { border-color: var(--cyan); }
+button:disabled { opacity: .5; cursor: not-allowed; }
+button.primary { background: var(--cyan); color: #04222a; border-color: var(--cyan); font-weight: 600; }
+button.danger { background: transparent; color: var(--danger); border-color: var(--danger); }
+button.ghost { background: transparent; }
+input[type=text], input[type=password], input[type=number], select, textarea { font: inherit; background: #0e1014; color: var(--text); border: 1px solid var(--line); border-radius: 8px; padding: 7px 10px; width: 100%; }
+textarea { min-height: 90px; font-family: ui-monospace, Consolas, monospace; }
+label { display: block; margin: 8px 0 4px; color: var(--muted); }
+label.inline { display: flex; align-items: flex-start; gap: 8px; color: var(--text); margin: 6px 0; }
+label.inline input { margin-top: 4px; }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; margin-bottom: 12px; }
+.row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.row.between { justify-content: space-between; }
+.muted { color: var(--muted); } .small { font-size: 12px; }
+.mono { font-family: ui-monospace, Consolas, monospace; word-break: break-all; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--line); font-size: 12px; color: var(--muted); }
+.chip.high, .chip.CONFIRMED { color: var(--danger); border-color: var(--danger); }
+.chip.medium, .chip.SUSPICIOUS { color: var(--warn); border-color: var(--warn); }
+.chip.low, .chip.POTENTIAL, .chip.INSUFFICIENT { color: var(--cyan); border-color: var(--cyan); }
+.chip.LEGITIMATE, .chip.info { color: var(--safe); border-color: var(--safe); }
+
+/* Insigna nivelului de risc */
+.level { display: flex; gap: 12px; align-items: center; padding: 12px 14px; border-radius: var(--radius); border: 2px solid var(--line); background: var(--panel-2); }
+.level .icon { width: 40px; height: 40px; flex: none; display: grid; place-items: center; font-size: 22px; font-weight: 700; border-radius: 50%; border: 2px solid currentColor; }
+.level .name { font-size: 18px; font-weight: 700; } .level .sub { color: var(--muted); font-size: 12px; }
+.level.safe { color: var(--safe); border-color: var(--safe); } .level.suspicious { color: var(--warn); border-color: var(--warn); }
+.level.dangerous { color: var(--danger); border-color: var(--danger); } .level.unknown { color: var(--unknown); border-color: var(--unknown); }
+.level > div:last-child { color: var(--text); }
+.level.dangerous .icon { border-radius: 8px; } .level.suspicious .icon { border-radius: 8px 8px 20px 20px; }
+
+/* Indicatori */
+.ind { border: 1px solid var(--line); border-radius: 8px; margin: 6px 0; background: var(--panel-2); }
+.ind summary { cursor: pointer; padding: 8px 10px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.ind .body { padding: 0 12px 10px; }
+.ind dl { display: grid; grid-template-columns: max-content 1fr; gap: 2px 12px; margin: 8px 0 0; font-size: 12px; }
+.ind dt { color: var(--muted); } .ind dd { margin: 0; word-break: break-all; font-family: ui-monospace, Consolas, monospace; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { color: var(--muted); font-weight: 600; }
+.empty { color: var(--muted); font-style: italic; padding: 8px 0; }
+.bar { height: 8px; border-radius: 4px; background: var(--cyan); min-width: 2px; }
+.notice { border-left: 4px solid var(--orange); background: rgba(245, 158, 11, .08); padding: 8px 12px; border-radius: 6px; }
+.notice.info { border-color: var(--cyan); background: rgba(34, 211, 238, .08); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+@media (max-width: 560px) { .row { gap: 6px; } th, td { padding: 4px; } }

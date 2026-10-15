@@ -1,0 +1,10 @@
+body { width: 400px; max-height: 590px; overflow-y: auto; }
+.top { display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; border-bottom: 1px solid var(--line); position: sticky; top: 0; background: var(--bg); z-index: 2; }
+.brand { color: var(--cyan); }
+#app { padding: 12px; }
+.domain { margin: 10px 0 4px; }
+.domain .host { font-size: 16px; font-weight: 600; }
+details.sec { border-top: 1px solid var(--line); padding: 6px 0; }
+details.sec > summary { cursor: pointer; padding: 4px 0; font-weight: 600; }
+.actions { display: flex; gap: 8px; margin: 12px 0; flex-wrap: wrap; }
+.actions button { flex: 1 1 140px; }

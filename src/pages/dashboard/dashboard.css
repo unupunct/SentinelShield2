@@ -1,0 +1,15 @@
+.top { display: flex; align-items: baseline; gap: 14px; padding: 14px 20px; border-bottom: 1px solid var(--line); }
+.top h1 { margin: 0; color: var(--cyan); }
+#tabs { display: flex; gap: 4px; padding: 10px 20px 0; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+#tabs button { border-radius: 8px 8px 0 0; border-bottom: none; background: transparent; color: var(--muted); }
+#tabs button[aria-selected="true"] { background: var(--panel); color: var(--text); border-color: var(--cyan); }
+#panel { max-width: 1000px; margin: 0 auto; padding: 20px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.stat { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; }
+.stat .n { font-size: 28px; font-weight: 700; }
+.stat.SAFE .n { color: var(--safe); } .stat.SUSPICIOUS .n { color: var(--warn); } .stat.DANGEROUS .n { color: var(--danger); } .stat.UNKNOWN .n { color: var(--unknown); }
+.barrow { display: grid; grid-template-columns: 110px 1fr 40px; gap: 8px; align-items: center; margin: 4px 0; }
+.filters { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 12px; }
+.filters label.inline { margin: 0; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; } @media (max-width: 800px) { .two { grid-template-columns: 1fr; } }
+.disclosure { font-size: 13px; }
