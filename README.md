@@ -11,12 +11,23 @@ recunoaște indiciile de phishing înainte de a deschide o adresă sau de a intr
 > înseamnă siguranță, iar eticheta „Periculos confirmat” se acordă **exclusiv** pe baza unei surse de reputație
 > configurate explicit de utilizator.
 
+[![Release](https://img.shields.io/github/v/release/unupunct/SentinelShield2)](https://github.com/unupunct/SentinelShield2/releases/latest) · [⬇ Descarcă ultima versiune](https://github.com/unupunct/SentinelShield2/releases/latest)
+
+## Instalare ușoară (2 minute, fără Node.js)
+
+1. Descarcă **`SentinelShield2-0.1.0.zip`** din [Releases](https://github.com/unupunct/SentinelShield2/releases/latest) și dezarhivează-l într-un folder pe care îl păstrezi (Chrome îl citește de acolo).
+2. Deschide `chrome://extensions` și pornește **Developer mode** (dreapta sus).
+3. Apasă **Load unpacked** și alege folderul dezarhivat (cel care conține `manifest.json`).
+4. Fixează iconița în bara Chrome.
+
+> Chrome nu permite instalarea extensiilor din afara magazinului fără Developer mode. Nu este publicată în Chrome Web Store.
+
 ---
 
 ## Cuprins
 
 1. [Funcționalități](#funcționalități)
-2. [Instalare (load unpacked)](#instalare-load-unpacked)
+2. [Instalare](#instalare-ușoară-2-minute-fără-nodejs) · [din cod sursă](#instalare-din-cod-sursă-load-unpacked)
 3. [Utilizare](#utilizare)
 4. [Niveluri de risc și scor](#niveluri-de-risc-și-scor)
 5. [Permisiuni și justificare](#permisiuni-și-justificare)
@@ -53,9 +64,9 @@ recunoaște indiciile de phishing înainte de a deschide o adresă sau de a intr
 
 ---
 
-## Instalare (load unpacked)
+## Instalare din cod sursă (load unpacked)
 
-Se recomandă încărcarea directorului construit prin `npm run build`.
+Alternativ la ZIP-ul din Releases, se recomandă încărcarea directorului construit prin `npm run build`.
 
 1. Clonează / copiază proiectul local.
 2. Instalează dependențele și construiește pachetul de rulare:
@@ -249,3 +260,8 @@ După încărcarea extensiei:
 - [PRIVACY.md](PRIVACY.md) — ce date sunt prelucrate, unde rămân și cum sunt protejate.
 - [SECURITY.md](SECURITY.md) — model de amenințare, decizii de securitate și cum raportezi o vulnerabilitate.
 - [CHANGELOG.md](CHANGELOG.md) — istoricul versiunilor.
+
+---
+
+## Repository înrudit
+[SentinelShield](https://github.com/unupunct/SentinelShield) este o variantă separată, mai completă (protecție automată la navigare, analiză comportamentală, descărcări, panou local).
