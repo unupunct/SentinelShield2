@@ -1,9 +1,0 @@
-{
-  "name": "Intrări de test Sentinel Shield",
-  "version": "2026-10-15",
-  "note": "Listă SINTETICĂ pentru testare: domeniile folosesc TLD-ul rezervat .example și nu există în realitate. Protecția reală provine din feed-urile importate de utilizator și din furnizorii opționali (vezi README).",
-  "entries": [
-    { "domain": "confirmed-malware.sentinel-test.example", "threatType": "malware", "note": "Simulează o gazdă care distribuie malware" },
-    { "domain": "confirmed-phishing.sentinel-test.example", "threatType": "phishing", "note": "Simulează o gazdă de phishing" }
-  ]
-}
