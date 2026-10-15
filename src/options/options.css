@@ -1,0 +1,169 @@
+/* SentinelShield2 - stiluri pentru pagina de setări. */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 20px;
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border);
+}
+
+.topbar h1 {
+  font-size: 17px;
+  margin: 0;
+}
+
+.global-message {
+  padding: 10px 20px 0;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 20px;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 20px;
+  align-items: start;
+}
+
+.sidenav {
+  position: sticky;
+  top: 76px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sidenav a {
+  padding: 7px 10px;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  border: 1px solid transparent;
+}
+
+.sidenav a:hover {
+  background: var(--bg-elevated-2);
+  text-decoration: none;
+}
+
+.sidenav a.active {
+  background: var(--accent-soft);
+  border-color: var(--accent-border);
+  color: var(--text);
+}
+
+.content {
+  min-width: 0;
+}
+
+.content section {
+  scroll-margin-top: 84px;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  width: auto;
+  min-height: 0;
+  accent-color: var(--accent);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 12px 0;
+}
+
+code {
+  font-family: var(--mono);
+  font-size: 12px;
+  background: var(--bg);
+  padding: 1px 4px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+  margin: 8px 0;
+}
+
+.list-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.list-panel {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px;
+  background: var(--bg-elevated-2);
+}
+
+.list-panel form {
+  margin-bottom: 8px;
+}
+
+.list-panel form input {
+  flex: 1 1 auto;
+  min-width: 120px;
+}
+
+.list-panel [data-list-search] {
+  margin-bottom: 8px;
+}
+
+.entry-table {
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.entry-host {
+  font-family: var(--mono);
+  font-size: 12px;
+  word-break: break-all;
+}
+
+.tag {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 1px 6px;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  color: var(--text-faint);
+}
+
+input[type="file"] {
+  padding: 6px;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  color: var(--text);
+  width: 100%;
+}
+
+.empty {
+  color: var(--text-faint);
+  font-size: 12px;
+  padding: 8px 0;
+}
+
+@media (max-width: 820px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  .sidenav {
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}

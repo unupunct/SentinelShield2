@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ro">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SentinelShield2</title>
+    <link rel="stylesheet" href="../shared/ui.css" />
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body class="popup">
+    <header class="popup-header">
+      <div class="brand">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path
+            d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Z"
+            fill="#0d1219"
+            stroke="#ff7a1a"
+            stroke-width="1.6"
+          />
+          <path
+            d="m8.4 12.2 2.4 2.4 4.6-4.8"
+            fill="none"
+            stroke="#ff7a1a"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+        <div>
+          <h1>SentinelShield2</h1>
+          <p class="small faint" id="header-subtitle">Analiză locală de linkuri</p>
+        </div>
+      </div>
+      <button id="open-options" class="ghost small-button" type="button" aria-label="Deschide setările">
+        Setări
+      </button>
+    </header>
+
+    <main class="popup-body">
+      <section class="card tight" aria-labelledby="current-heading">
+        <div class="row between">
+          <h2 id="current-heading">Pagina curentă</h2>
+          <span id="host-chips" class="row"></span>
+        </div>
+        <p id="current-host" class="mono small url-inline">Se citește tab-ul activ…</p>
+        <div id="current-status" class="stack"></div>
+        <div class="row" style="margin-top: 8px">
+          <button id="analyze-page" class="primary" type="button">Analizează pagina</button>
+          <button id="analyze-page-reputation" class="ghost" type="button" title="Folosește sursa de reputație configurată, dacă există">
+            + sursă de reputație
+          </button>
+        </div>
+        <div id="page-verdict" class="stack" style="margin-top: 10px"></div>
+      </section>
+
+      <section class="card tight" aria-labelledby="link-heading">
+        <h2 id="link-heading">Verifică un link</h2>
+        <form id="link-form" class="stack" novalidate>
+          <label for="link-input">Lipește o adresă înainte de a o deschide</label>
+          <input
+            id="link-input"
+            type="text"
+            name="link"
+            inputmode="url"
+            autocomplete="off"
+            spellcheck="false"
+            placeholder="exemplu.ro/cale sau https://…"
+            aria-describedby="link-hint"
+          />
+          <p id="link-hint" class="small faint">
+            Analiza se face local, în browser. Adresa nu este trimisă nicăieri.
+          </p>
+          <div class="row">
+            <button type="submit" class="primary">Verifică linkul</button>
+            <button type="button" id="link-scan-reputation" class="ghost">Verifică + reputație</button>
+          </div>
+        </form>
+        <div id="link-verdict" class="stack" style="margin-top: 10px"></div>
+      </section>
+
+      <section class="card tight" aria-labelledby="actions-heading">
+        <h2 id="actions-heading">Acțiuni rapide pentru domeniul curent</h2>
+        <p class="small muted" id="actions-host">—</p>
+        <div class="row">
+          <button id="allow-host" class="ghost" type="button">Adaugă în lista de încredere</button>
+          <button id="block-host" class="danger" type="button">Blochează domeniul</button>
+        </div>
+        <div id="actions-message" class="stack" style="margin-top: 8px"></div>
+      </section>
+
+      <div id="global-error" class="stack"></div>
+    </main>
+
+    <footer class="popup-footer">
+      <span class="small faint">Analiză locală · fără telemetrie</span>
+      <a href="#" id="open-details-link" class="small">Detalii & metodă</a>
+    </footer>
+
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>

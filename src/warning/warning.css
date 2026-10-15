@@ -1,0 +1,41 @@
+/* SentinelShield2 - stiluri pentru pagina de avertizare. */
+
+.warning-body {
+  min-height: 100vh;
+  background:
+    radial-gradient(1200px 400px at 50% -10%, rgba(255, 92, 92, 0.12), transparent 70%),
+    var(--bg);
+}
+
+.warning-wrap {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 40px 16px 64px;
+}
+
+.warning-hero {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.warning-hero h1 {
+  font-size: 22px;
+  margin: 0 0 4px;
+}
+
+.warning-hero p {
+  margin: 0;
+}
+
+#confirm-continue {
+  width: auto;
+  min-height: 0;
+  accent-color: var(--danger);
+}
+
+#warning-header .url-display {
+  margin-top: 4px;
+  border-color: rgba(255, 92, 92, 0.4);
+}

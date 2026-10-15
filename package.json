@@ -1,0 +1,21 @@
+{
+  "name": "sentinelshield2",
+  "version": "0.1.0",
+  "private": true,
+  "description": "SentinelShield2 - Chrome MV3 extension for local phishing / suspicious link analysis",
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "build": "node scripts/build.mjs",
+    "validate": "node scripts/validate-manifest.mjs"
+  },
+  "devDependencies": {
+    "jsdom": "^30.1.3",
+    "vitest": "^5.0.4"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

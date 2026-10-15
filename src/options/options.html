@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="ro">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Setări · SentinelShield2</title>
+    <link rel="stylesheet" href="../shared/ui.css" />
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Z" fill="#0d1219" stroke="#ff7a1a" stroke-width="1.6" />
+          <path d="m8.4 12.2 2.4 2.4 4.6-4.8" fill="none" stroke="#ff7a1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <div>
+          <h1>Setări SentinelShield2</h1>
+          <p class="small faint">Analiză locală · fără telemetrie · confidențialitate implicită</p>
+        </div>
+      </div>
+      <span class="chip" id="version-chip">versiune —</span>
+    </header>
+
+    <div id="global-message" class="stack global-message"></div>
+
+    <div class="layout">
+      <nav class="sidenav" aria-label="Secțiuni de setări">
+        <a href="#navigare">Monitorizare navigare</a>
+        <a href="#avertisment">Nivel de avertizare</a>
+        <a href="#liste">Liste de încredere / blocare</a>
+        <a href="#reputatie">Sursă de reputație</a>
+        <a href="#confidentialitate">Confidențialitate</a>
+        <a href="#config">Import / export / resetare</a>
+        <a href="#reguli">Reguli de analiză</a>
+        <a href="#despre">Despre și limite</a>
+      </nav>
+
+      <main class="content">
+        <!-- ------------------------------------------------- navigare -->
+        <section id="navigare" class="card">
+          <h2>Monitorizare navigare</h2>
+          <p class="small muted">
+            Dacă este activată, extensia verifică adresa înainte de deschidere și afișează o pagină de avertizare când
+            riscul depășește pragul ales. Funcția necesită două permisiuni opționale, acordate explicit de tine:
+            <strong>webNavigation</strong> și accesul la site-uri (<code>*://*/*</code>). Fără ele, extensia rămâne
+            complet funcțională pentru analiza pornită manual (popup, meniu contextual, verificare de link).
+          </p>
+          <label class="row">
+            <input type="checkbox" id="navigation-enabled" />
+            Activează verificarea adreselor înainte de deschidere
+          </label>
+          <p class="small faint" id="navigation-state">Se verifică starea permisiunilor…</p>
+          <p class="small muted">
+            Limită importantă: browserul nu permite anularea sincronă a unei navigări pornite. Intervenția este, în cel
+            mai bun caz, o redirecționare imediată către pagina de avertizare.
+          </p>
+        </section>
+
+        <!-- ---------------------------------------------- avertisment -->
+        <section id="avertisment" class="card">
+          <h2>Nivel de avertizare</h2>
+          <p class="small muted">Pragul de la care se afișează pagina de avertizare (dacă monitorizarea este activă).</p>
+          <label for="warning-level">Avertizează de la nivelul</label>
+          <select id="warning-level">
+            <option value="low">Risc scăzut și peste</option>
+            <option value="moderate">Risc moderat și peste (recomandat)</option>
+            <option value="high">Risc ridicat și peste</option>
+            <option value="confirmed_dangerous">Doar periculos confirmat</option>
+          </select>
+        </section>
+
+        <!-- --------------------------------------------------- liste -->
+        <section id="liste" class="card">
+          <h2>Liste locale de încredere și de blocare</h2>
+          <p class="small muted">
+            Listele sunt stocate local. Prioritatea este: blocare exactă → blocare subdomeniu → încredere exactă →
+            încredere subdomeniu. O intrare din lista de blocare are mereu prioritate pentru același domeniu.
+          </p>
+
+          <div class="list-grid">
+            <div class="list-panel">
+              <h3>Lista de încredere (allowlist)</h3>
+              <form data-list-form="allowlist" class="row">
+                <input type="text" name="host" placeholder="exemplu.ro sau *.exemplu.ro" aria-label="Domeniu de adăugat în lista de încredere" />
+                <button type="submit" class="primary">Adaugă</button>
+              </form>
+              <input type="search" data-list-search="allowlist" placeholder="Caută în listă…" aria-label="Caută în lista de încredere" />
+              <div data-list-message="allowlist" class="stack"></div>
+              <div data-list-table="allowlist"></div>
+            </div>
+
+            <div class="list-panel">
+              <h3>Lista de blocare (blocklist)</h3>
+              <form data-list-form="blocklist" class="row">
+                <input type="text" name="host" placeholder="exemplu.ro sau *.exemplu.ro" aria-label="Domeniu de adăugat în lista de blocare" />
+                <button type="submit" class="danger">Adaugă</button>
+              </form>
+              <input type="search" data-list-search="blocklist" placeholder="Caută în listă…" aria-label="Caută în lista de blocare" />
+              <div data-list-message="blocklist" class="stack"></div>
+              <div data-list-table="blocklist"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ------------------------------------------------ reputație -->
+        <section id="reputatie" class="card">
+          <h2>Sursă de reputație (opțional)</h2>
+          <p class="small muted">
+            Implicit, extensia nu contactează niciun serviciu extern. Dacă activezi această opțiune, numele de domeniu
+            analizat este trimis către endpoint-ul HTTPS pe care îl configurezi. Eticheta „Periculos confirmat” se
+            acordă doar dacă bifezi explicit confirmarea de mai jos.
+          </p>
+          <label class="row">
+            <input type="checkbox" id="reputation-enabled" />
+            Folosește o sursă externă de reputație
+          </label>
+
+          <div class="form-grid">
+            <div>
+              <label for="reputation-provider">Tip sursă</label>
+              <select id="reputation-provider">
+                <option value="none">Fără sursă externă</option>
+                <option value="custom_http">Serviciu HTTP propriu (HTTPS)</option>
+              </select>
+            </div>
+            <div>
+              <label for="reputation-endpoint">Endpoint HTTPS</label>
+              <input type="url" id="reputation-endpoint" placeholder="https://exemplu.ro/api" />
+            </div>
+            <div>
+              <label for="reputation-timeout">Timp maxim de așteptare (ms)</label>
+              <input type="number" id="reputation-timeout" min="500" max="30000" step="100" />
+            </div>
+            <div>
+              <label for="reputation-apikey">Cheie API (opțională, stocată local)</label>
+              <input type="text" id="reputation-apikey" autocomplete="off" spellcheck="false" />
+            </div>
+          </div>
+
+          <label class="row">
+            <input type="checkbox" id="reputation-hostname-only" />
+            Trimite doar numele de domeniu (fără cale, parametri sau fragment)
+          </label>
+          <label class="row">
+            <input type="checkbox" id="reputation-confirm" />
+            Am încredere în această sursă: permite nivelul „Periculos confirmat” pentru verdict malițios
+          </label>
+          <p class="small faint" id="reputation-data-sent"></p>
+        </section>
+
+        <!-- ----------------------------------------- confidențialitate -->
+        <section id="confidentialitate" class="card">
+          <h2>Confidențialitate</h2>
+          <label class="row">
+            <input type="checkbox" id="privacy-store" />
+            Păstrează ultima analiză pentru fiecare tab (doar în memoria sesiunii)
+          </label>
+          <label class="row">
+            <input type="checkbox" id="privacy-redact" />
+            Redactează valorile parametrilor sensibili (tokenuri, parole) din dovezile afișate
+          </label>
+        </section>
+
+        <!-- ---------------------------------------------------- config -->
+        <section id="config" class="card">
+          <h2>Import, export și resetare</h2>
+          <div class="row">
+            <button id="export-config" class="ghost" type="button">Exportă configurația (JSON)</button>
+          </div>
+          <hr />
+          <label for="import-file">Importă configurație dintr-un fișier JSON</label>
+          <input type="file" id="import-file" accept="application/json,.json" />
+          <div class="row">
+            <label class="row" style="margin: 0">
+              <input type="radio" name="import-mode" value="merge" checked /> Combină
+            </label>
+            <label class="row" style="margin: 0">
+              <input type="radio" name="import-mode" value="replace" /> Înlocuiește
+            </label>
+          </div>
+          <div class="row">
+            <button id="import-config" class="ghost" type="button">Importă fișierul selectat</button>
+          </div>
+          <div id="import-report" class="stack"></div>
+          <hr />
+          <p class="small muted">Resetarea șterge toate listele și setările. Operațiunea este ireversibilă.</p>
+          <button id="reset-all" class="danger" type="button">Resetează tot</button>
+        </section>
+
+        <!-- ---------------------------------------------------- reguli -->
+        <section id="reguli" class="card">
+          <h2>Reguli de analiză</h2>
+          <p class="small muted">
+            Fiecare regulă are un identificator, o severitate, o pondere și explicații. Indicatorii din aceeași
+            familie nu se însumează: se păstrează ponderea maximă.
+          </p>
+          <div id="rules-table"></div>
+        </section>
+
+        <!-- --------------------------------------------------- despre -->
+        <section id="despre" class="card">
+          <h2>Despre și limite</h2>
+          <p class="small muted">
+            SentinelShield2 este o extensie Chrome Manifest V3. Analiza este locală și explicabilă. Nu există cont,
+            telemetrie sau colectare implicită de date.
+          </p>
+          <h3>Permisiuni solicitate și justificare</h3>
+          <ul class="small muted">
+            <li><code>storage</code> — pentru setări, liste și starea sesiunii.</li>
+            <li><code>activeTab</code> — pentru a analiza pagina curentă doar când tu ceri.</li>
+            <li><code>scripting</code> — pentru a citi permisiunile web ale paginii curente, la cerere.</li>
+            <li><code>contextMenus</code> — pentru verificarea linkurilor din meniul contextual.</li>
+            <li><code>webNavigation</code> (opțional) — pentru avertismentul înainte de navigare.</li>
+          </ul>
+          <h3>Ce NU face extensia</h3>
+          <ul class="small muted">
+            <li>Nu citește formulare, parole, cookie-uri sau conținutul paginilor.</li>
+            <li>Nu urcă istoricul de navigare nicăieri.</li>
+            <li>Nu folosește cod de la distanță și nu are telemetrie ascunsă.</li>
+          </ul>
+          <div id="limits-list"></div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="options.js"></script>
+  </body>
+</html>

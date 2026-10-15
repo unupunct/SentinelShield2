@@ -1,0 +1,64 @@
+/* SentinelShield2 - stiluri pentru pagina de detalii. */
+
+.page {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 16px;
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border);
+}
+
+#show-evidence {
+  width: auto;
+  min-height: 0;
+  accent-color: var(--accent);
+}
+
+#domain-details dl {
+  display: grid;
+  grid-template-columns: minmax(160px, auto) 1fr;
+  gap: 4px 12px;
+  margin: 0;
+}
+
+#domain-details dt {
+  color: var(--text-muted);
+}
+
+#domain-details dd {
+  margin: 0;
+}
+
+.permission-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.permission-list li {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.permission-list li:last-child {
+  border-bottom: none;
+}
+
+.permission-state {
+  flex: 0 0 auto;
+}

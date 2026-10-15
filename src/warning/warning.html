@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ro">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Avertisment · SentinelShield2</title>
+    <link rel="stylesheet" href="../shared/ui.css" />
+    <link rel="stylesheet" href="warning.css" />
+  </head>
+  <body class="warning-body">
+    <main class="warning-wrap">
+      <div class="warning-hero">
+        <svg width="44" height="44" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Z" fill="#0d1219" stroke="#ff5c5c" stroke-width="1.6" />
+          <path d="M12 8v5" fill="none" stroke="#ff5c5c" stroke-width="2" stroke-linecap="round" />
+          <circle cx="12" cy="16.4" r="1.1" fill="#ff5c5c" />
+        </svg>
+        <div>
+          <h1>Ai fost oprit înainte de a deschide această pagină</h1>
+          <p class="muted" id="warning-subtitle">Analiza locală a identificat indicii de risc.</p>
+        </div>
+      </div>
+
+      <div id="error-area" class="stack"></div>
+
+      <section class="card" id="warning-card" hidden>
+        <div id="warning-header" class="stack"></div>
+        <div id="warning-reasons" class="stack"></div>
+      </section>
+
+      <section class="card tight">
+        <h2>Ce poți face acum</h2>
+        <p class="small muted">
+          Recomandarea implicită este să revii la pagina anterioară. Dacă ești sigur că adresa este corectă, poți
+          continua oricum pentru <strong id="exception-minutes">10</strong> minute, doar pentru acest domeniu.
+        </p>
+        <div class="row">
+          <button id="go-back" class="primary" type="button">Înapoi la siguranță</button>
+          <button id="continue-anyway" class="danger" type="button" disabled>Continuă oricum (10 minute)</button>
+        </div>
+        <label class="row small" style="margin-top: 8px">
+          <input type="checkbox" id="confirm-continue" />
+          Înțeleg riscul și vreau să continui oricum.
+        </label>
+        <div id="action-message" class="stack" style="margin-top: 8px"></div>
+      </section>
+
+      <section class="card tight">
+        <h2>Limite ale acestei protecții</h2>
+        <ul class="small muted">
+          <li>Analiza este euristică și locală; poate conține atât ratări, cât și fals pozitive.</li>
+          <li>Blocarea nu este sincronă: o mică parte din pagină se poate încărca înainte de a-ți arăta acest avertisment.</li>
+          <li>HTTPS nu garantează siguranța, iar HTTP, singur, nu înseamnă pericol.</li>
+        </ul>
+      </section>
+    </main>
+
+    <script type="module" src="warning.js"></script>
+  </body>
+</html>

@@ -1,0 +1,544 @@
+/**
+ * SentinelShield2 - tema vizuală partajată (temă întunecată, accente portocalii).
+ *
+ * Reguli de accesibilitate respectate:
+ * - contrast text/fundal de minimum 4.5:1 pentru text normal;
+ * - riscul NU este comunicat doar prin culoare: fiecare nivel are etichetă
+ *   text, iconiță (formă diferită) și scor;
+ * - focus vizibil pe toate elementele interactive (navigare cu tastatura);
+ * - dimensiuni minime de 32px pentru țintele de atingere.
+ */
+
+:root {
+  color-scheme: dark;
+
+  --bg: #0d1219;
+  --bg-elevated: #121821;
+  --bg-elevated-2: #182029;
+  --border: #2a3441;
+  --border-strong: #3a4756;
+
+  --text: #e8eef5;
+  --text-muted: #a8b4c2;
+  --text-faint: #7d8b9b;
+
+  --accent: #ff7a1a;
+  --accent-strong: #ff9440;
+  --accent-soft: rgba(255, 122, 26, 0.14);
+  --accent-border: rgba(255, 122, 26, 0.45);
+
+  --danger: #ff5c5c;
+  --danger-soft: rgba(255, 92, 92, 0.14);
+  --warn: #ffb020;
+  --warn-soft: rgba(255, 176, 32, 0.14);
+  --ok: #4ec98a;
+  --ok-soft: rgba(78, 201, 138, 0.14);
+  --info: #6fb3f0;
+  --info-soft: rgba(111, 179, 240, 0.14);
+
+  --radius: 10px;
+  --radius-sm: 6px;
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
+  --mono: "Cascadia Mono", Consolas, "SF Mono", Menlo, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 8px;
+  line-height: 1.25;
+}
+
+h1 {
+  font-size: 18px;
+}
+
+h2 {
+  font-size: 15px;
+  color: var(--text);
+}
+
+h3 {
+  font-size: 13px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+p {
+  margin: 0 0 8px;
+}
+
+a {
+  color: var(--accent-strong);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 2px;
+}
+
+.mono {
+  font-family: var(--mono);
+  font-size: 12px;
+}
+
+.muted {
+  color: var(--text-muted);
+}
+
+.faint {
+  color: var(--text-faint);
+}
+
+.small {
+  font-size: 12px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------------------------------------------------------------- butoane */
+
+button,
+.button {
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  min-height: 34px;
+  padding: 7px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  background: var(--bg-elevated-2);
+  color: var(--text);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: center;
+}
+
+button:hover,
+.button:hover {
+  border-color: var(--accent-border);
+}
+
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+button.primary,
+.button.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #17110a;
+}
+
+button.primary:hover {
+  background: var(--accent-strong);
+}
+
+button.danger {
+  border-color: rgba(255, 92, 92, 0.5);
+  color: var(--danger);
+  background: var(--danger-soft);
+}
+
+button.ghost {
+  background: transparent;
+  border-color: var(--border);
+}
+
+button.link {
+  background: none;
+  border: none;
+  color: var(--accent-strong);
+  padding: 2px;
+  min-height: 0;
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+/* ---------------------------------------------------------------- intrări */
+
+input[type="text"],
+input[type="url"],
+input[type="search"],
+input[type="number"],
+select,
+textarea {
+  width: 100%;
+  font-family: inherit;
+  font-size: 13px;
+  padding: 8px 10px;
+  min-height: 34px;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+}
+
+textarea {
+  min-height: 120px;
+  font-family: var(--mono);
+  font-size: 12px;
+}
+
+label {
+  display: block;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+/* --------------------------------------------------------------- cartonașe */
+
+.card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+.card.tight {
+  padding: 10px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.row.between {
+  justify-content: space-between;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ---------------------------------------------------------------- risc */
+
+.risk-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 12px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+/* Fiecare nivel are formă de marcaj diferită, nu doar culoare. */
+.risk-badge::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  flex: 0 0 auto;
+  background: currentColor;
+}
+
+.risk-none {
+  color: var(--text-muted);
+  background: rgba(168, 180, 194, 0.12);
+  border-color: rgba(168, 180, 194, 0.3);
+}
+
+.risk-none::before {
+  border-radius: 50%;
+}
+
+.risk-low {
+  color: var(--info);
+  background: var(--info-soft);
+  border-color: rgba(111, 179, 240, 0.35);
+}
+
+.risk-low::before {
+  border-radius: 2px;
+}
+
+.risk-moderate {
+  color: var(--warn);
+  background: var(--warn-soft);
+  border-color: rgba(255, 176, 32, 0.4);
+}
+
+.risk-moderate::before {
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+.risk-high,
+.risk-confirmed {
+  color: var(--danger);
+  background: var(--danger-soft);
+  border-color: rgba(255, 92, 92, 0.45);
+}
+
+.risk-high::before {
+  clip-path: polygon(50% 0, 100% 38%, 82% 100%, 18% 100%, 0 38%);
+}
+
+.risk-confirmed::before {
+  background: repeating-linear-gradient(45deg, currentColor 0 2px, transparent 2px 4px);
+  border-radius: 2px;
+}
+
+.severity {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.severity-info {
+  color: var(--text-muted);
+  border-color: var(--border-strong);
+}
+
+.severity-low {
+  color: var(--info);
+  border-color: rgba(111, 179, 240, 0.4);
+}
+
+.severity-medium {
+  color: var(--warn);
+  border-color: rgba(255, 176, 32, 0.45);
+}
+
+.severity-high {
+  color: var(--danger);
+  border-color: rgba(255, 92, 92, 0.45);
+}
+
+.severity-critical {
+  color: #fff;
+  background: var(--danger);
+  border-color: var(--danger);
+}
+
+/* -------------------------------------------------------------- indicatori */
+
+.indicator {
+  border-left: 3px solid var(--border-strong);
+  padding: 8px 10px;
+  background: var(--bg-elevated-2);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  margin-bottom: 8px;
+}
+
+.indicator.sev-high,
+.indicator.sev-critical {
+  border-left-color: var(--danger);
+}
+
+.indicator.sev-medium {
+  border-left-color: var(--warn);
+}
+
+.indicator.sev-low {
+  border-left-color: var(--info);
+}
+
+.indicator.suppressed {
+  opacity: 0.7;
+  border-left-style: dashed;
+}
+
+.indicator .indicator-title {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.indicator dl {
+  margin: 6px 0 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2px 8px;
+  font-size: 12px;
+}
+
+.indicator dt {
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.indicator dd {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------- altele */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--bg-elevated-2);
+  border: 1px solid var(--border-strong);
+  color: var(--text-muted);
+}
+
+.chip.allow {
+  color: var(--ok);
+  border-color: rgba(78, 201, 138, 0.4);
+  background: var(--ok-soft);
+}
+
+.chip.block {
+  color: var(--danger);
+  border-color: rgba(255, 92, 92, 0.4);
+  background: var(--danger-soft);
+}
+
+.url-display {
+  font-family: var(--mono);
+  font-size: 12px;
+  word-break: break-all;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
+  color: var(--text);
+}
+
+.url-display mark {
+  background: var(--danger);
+  color: #fff;
+  border-radius: 2px;
+  padding: 0 1px;
+}
+
+.notice {
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  padding: 8px 10px;
+  font-size: 12px;
+  color: var(--text-muted);
+  background: var(--bg-elevated-2);
+}
+
+.notice.accent {
+  border-color: var(--accent-border);
+  background: var(--accent-soft);
+  color: var(--text);
+}
+
+.notice.danger {
+  border-color: rgba(255, 92, 92, 0.45);
+  background: var(--danger-soft);
+  color: var(--text);
+}
+
+.notice.ok {
+  border-color: rgba(78, 201, 138, 0.4);
+  background: var(--ok-soft);
+  color: var(--text);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.list li:last-child {
+  border-bottom: none;
+}
+
+details summary {
+  cursor: pointer;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+details summary:hover {
+  color: var(--text);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+th {
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand svg {
+  flex: 0 0 auto;
+}

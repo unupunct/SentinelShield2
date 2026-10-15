@@ -1,0 +1,66 @@
+/* SentinelShield2 - stiluri specifice ferestrei popup (temă întunecată). */
+
+.popup {
+  width: 380px;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.popup-header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 12px;
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border);
+}
+
+.popup-header h1 {
+  font-size: 15px;
+  margin: 0;
+}
+
+.popup-header p {
+  margin: 0;
+}
+
+.popup-body {
+  padding: 12px;
+}
+
+.popup-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 12px;
+  border-top: 1px solid var(--border);
+  background: var(--bg-elevated);
+  position: sticky;
+  bottom: 0;
+}
+
+.url-inline {
+  word-break: break-all;
+  margin: 4px 0 8px;
+  color: var(--text);
+}
+
+.small-button {
+  min-height: 28px;
+  padding: 4px 10px;
+  font-size: 12px;
+}
+
+.verdict-compact .risk-badge {
+  font-size: 12px;
+}
+
+.verdict-compact .url-display {
+  max-height: 84px;
+  overflow-y: auto;
+}

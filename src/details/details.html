@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ro">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Detalii analiză · SentinelShield2</title>
+    <link rel="stylesheet" href="../shared/ui.css" />
+    <link rel="stylesheet" href="details.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Z" fill="#0d1219" stroke="#ff7a1a" stroke-width="1.6" />
+          <path d="m8.4 12.2 2.4 2.4 4.6-4.8" fill="none" stroke="#ff7a1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <div>
+          <h1>Detalii analiză</h1>
+          <p class="small faint">Explicații complete, limite și dovezi</p>
+        </div>
+      </div>
+      <div class="row">
+        <button id="open-options" class="ghost" type="button">Setări</button>
+        <button id="reanalyze" class="primary" type="button">Reanalizează</button>
+      </div>
+    </header>
+
+    <main class="page">
+      <div id="error-area" class="stack"></div>
+
+      <section id="verdict-section" class="card" hidden>
+        <div id="verdict-header" class="stack"></div>
+      </section>
+
+      <section id="indicators-section" class="card" hidden>
+        <div class="row between">
+          <h2>Indicatori de risc identificați</h2>
+          <label class="row small" style="margin: 0">
+            <input type="checkbox" id="show-evidence" />
+            Arată dovezile tehnice
+          </label>
+        </div>
+        <p class="small faint">
+          Indicatorii sunt observații euristice. Fiecare are explicație, limite și recomandare. Un indicator, singur,
+          nu este o dovadă de phishing.
+        </p>
+        <div id="indicators"></div>
+      </section>
+
+      <section id="domain-section" class="card" hidden>
+        <h2>Detalii despre domeniu</h2>
+        <div id="domain-details"></div>
+      </section>
+
+      <section id="permissions-section" class="card" hidden>
+        <div class="row between">
+          <h2>Permisiuni web ale paginii</h2>
+          <button id="read-permissions" class="ghost" type="button">Citește permisiunile</button>
+        </div>
+        <p class="small faint">
+          Extensia citește doar stări de permisiuni raportate de browser pentru tab-ul analizat. Nu citește formulare,
+          parole, cookie-uri sau conținutul paginii.
+        </p>
+        <div id="permissions"></div>
+      </section>
+
+      <section id="reputation-section" class="card" hidden>
+        <div id="reputation"></div>
+      </section>
+
+      <section id="uncertainty-section" class="card" hidden>
+        <div id="uncertainty"></div>
+      </section>
+    </main>
+
+    <script type="module" src="details.js"></script>
+  </body>
+</html>
